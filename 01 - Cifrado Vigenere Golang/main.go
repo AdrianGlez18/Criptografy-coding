@@ -1,3 +1,10 @@
+/******************************
+ * Práctica 1 : Cifrado de Vigenere
+ * Asignatura : Segutidad en Sistemas Informáticos
+ * Autor	  : Adrián González
+ * Lenguaje   : Go (Golang)
+ *******************************/
+
 package main
 
 import (
