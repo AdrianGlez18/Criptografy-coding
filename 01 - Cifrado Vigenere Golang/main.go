@@ -51,21 +51,49 @@ func decrypt(message string, key string, alphabetStr string, alphabet map[uint8]
 func main() {
 	alphabetStr, alphabet := generateAlphabet()
 
-	var selector = 2
+	var selector = 3
 	var key, message string
-
-	switch selector {
-	case 1:
-		fmt.Println("Introduzca el mensaje que desee encriptar: ")
-		fmt.Scan(&message)
-		fmt.Println("Introduzca la clave de cifrado: ")
-		fmt.Scan(&key)
-		fmt.Println("El mensaje encriptado es " + encrypt(message, key, alphabetStr, alphabet))
-	case 2:
-		fmt.Println("Introduzca el mensaje que desee deencriptar: ")
-		fmt.Scan(&message)
-		fmt.Println("Introduzca la clave de cifrado: ")
-		fmt.Scan(&key)
-		fmt.Println("El mensaje deencriptado es " + decrypt(message, key, alphabetStr, alphabet))
+	for selector > 0 {
+		fmt.Print(`
+		############################################
+		# Descifrador de Vigenere                  #
+		############################################
+		
+		>>> Seleccione una opción para continuar: 
+		>>>		1. Encriptar
+		>>>		2. Desencriptar
+		>>>		3. Salir
+		
+		Su seleccion:	`)
+		fmt.Scan((&selector))
+		switch selector {
+		case 1:
+			fmt.Print("\t\t>>> Introduzca el mensaje que desee encriptar: ")
+			fmt.Scan(&message)
+			fmt.Print("\t\t>>> Introduzca la clave de cifrado: ")
+			fmt.Scan(&key)
+			fmt.Print("\t\t----> El mensaje encriptado es " + encrypt(message, key, alphabetStr, alphabet) + " <----")
+			fmt.Print("\n\n\t\t>>> ¿Desea continuar?\n\t\t>>> 1. Si\n\t\t>>> 2. No\n\t\tSu seleccion: ")
+			fmt.Scan((&selector))
+			if selector == 2 {
+				selector = -1
+			}
+		case 2:
+			fmt.Print("\t\t>>> Introduzca el mensaje que desee deencriptar: ")
+			fmt.Scan(&message)
+			fmt.Print("\t\t>>> Introduzca la clave de cifrado: ")
+			fmt.Scan(&key)
+			fmt.Print("\t\t----> El mensaje deencriptado es " + decrypt(message, key, alphabetStr, alphabet) + " <----")
+			fmt.Print("\n\n\t\t>>> ¿Desea continuar?\n\t\t>>> 1. Si\n\t\t>>> 2. No\n\t\tSu seleccion: ")
+			fmt.Scan((&selector))
+			if selector == 2 {
+				selector = -1
+			}
+		case 3:
+			fmt.Print("\t\t>>> Gracias por utilizar este programa. \n\n")
+			selector = -1
+		default:
+			fmt.Print("No ha seleccionado una opción válida")
+		}
 	}
 }
